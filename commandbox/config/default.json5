@@ -81,7 +81,6 @@
       "path(/sitemap.xml) -> rewrite(/sitemap.cfm)",
       "disallowed-methods(trace)"
     ],
-    ​
     //3 ways to specify rulesFile
     "rulesFile": "../secure-rules.json",
     // Or... 
@@ -92,7 +91,6 @@
     ],
     // Or...
     "rulesFile":"../rules/*.json",
-    ​
     "blockCFAdmin": false,
     "blockSensitivePaths":  true,
     "blockFlashRemoting":  true
