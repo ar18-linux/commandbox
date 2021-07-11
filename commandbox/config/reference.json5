@@ -104,6 +104,7 @@
     "WARPath": "",
     "cfengine": "lucee@5.x",
     "restMappings": "/rest/*,/api/*",
+    // Where all settings are stored, not the content
     "serverHomeDirectory": "",
     "sessionCookieSecure": true,
     "sessionCookieHTTPOnly": true

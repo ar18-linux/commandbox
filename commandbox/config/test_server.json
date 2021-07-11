@@ -1,19 +1,15 @@
 {
-  "name": "myapp",
+  "name": "test_server",
   "openBrowser": false,
   "trayEnable": false,
   "web": {
     "HTTP": {
       "enable": true,
       "port": 8080
-    },
-    "AJP": {
-      "enable": true,
-      "port": 8009
     }
   },
   "app": {
     "cfengine": "lucee@5.x",
-    "serverHomeDirectory": "/opt/CommandBox/web-contexts/wwwroot-myapp"
+    "serverHomeDirectory": "/tmp/cb"
   }
 }

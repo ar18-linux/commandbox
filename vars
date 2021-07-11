@@ -6,3 +6,6 @@ fi
 if [ ! -v install_dir ]; then
   install_dir="/opt/ar18"
 fi
+
+cfbox_user="cfbox"
+www_root="/var/www"
