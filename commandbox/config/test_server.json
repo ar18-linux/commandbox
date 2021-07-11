@@ -10,6 +10,6 @@
   },
   "app": {
     "cfengine": "lucee@5.x",
-    "serverHomeDirectory": "/tmp/cb"
+    "serverHomeDirectory":"/tmp/cb"
   }
 }
