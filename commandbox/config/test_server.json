@@ -3,6 +3,7 @@
   "openBrowser": false,
   "trayEnable": false,
   "web": {
+    "host": "127.0.0.1",
     "HTTP": {
       "enable": true,
       "port": 8080
