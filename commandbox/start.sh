@@ -189,7 +189,7 @@ www_root="$(cat "/home/$(logname)/.config/ar18/commandbox/www_root")"
 
 server_dir="$(cat "${www_root}/${server_name}/${server_name}.json" | grep "serverHomeDirectory")"
 server_dir="$(echo "${server_dir}" | xargs | sed -e "s/:/=/g")"
-set -x
+
 if [ "${server_dir}" != "" ]; then
   eval "${server_dir}"
 fi
