@@ -203,9 +203,11 @@ ar18.script.install "${install_dir}" "${module_name}" "${script_dir}"
 
 # Get latest version
 cd "${temp_dir}"
-wget https://www.ortussolutions.com/parent/download/commandbox/type/linux-jre64
-ar18.script.execute_with_sudo unzip "${temp_dir}/linux-jre64" -d "${cbox_install_dir}"
+#wget https://www.ortussolutions.com/parent/download/commandbox/type/linux-jre64
+#ar18.script.execute_with_sudo unzip "${temp_dir}/linux-jre64" -d "${cbox_install_dir}"
+cf "${script_dir}"
 
+# Kills install script as well!
 #ar18.script.execute_with_sudo pkill -f commandbox
 
 # Install user
