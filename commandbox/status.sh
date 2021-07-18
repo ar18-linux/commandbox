@@ -180,70 +180,19 @@ trap 'err_report "${BASH_SOURCE[0]}" ${LINENO} "${BASH_COMMAND}"' ERR
 }
 #################################SCRIPT_START##################################
 
-ar18.script.import ar18.script.obtain_sudo_password
-ar18.script.import ar18.script.install
-ar18.script.import ar18.script.execute_with_sudo
-ar18.script.import ar18.pacman.install
+server_name="${1}"
+cfuser="$(cat "/home/@@USER_NAME@@/.config/ar18/commandbox/cfbox_user")"
+install_dir="$(cat "/home/@@USER_NAME@@/.config/ar18/commandbox/INSTALL_DIR")"
+www_root="$(cat "/home/@@USER_NAME@@/.config/ar18/commandbox/www_root")"
 
-. "${script_dir}/vars"
+server_dir="$(cat "${www_root}/${server_name}/${server_name}.json" | grep "serverHomeDirectory")"
+server_dir="$(echo "${server_dir}" | xargs | sed -e "s/:/=/g")"
 
-ar18.script.obtain_sudo_password
+if [ "${server_dir}" != "" ]; then
+  eval "${server_dir}"
+fi
 
-function ar18_extra_cleanup(){
-  ar18.script.execute_with_sudo rm -rf "${temp_dir}"
-}
-temp_dir="/tmp/commandbox"
-ar18.script.execute_with_sudo rm -rf "${temp_dir}"
-mkdir -p "${temp_dir}"
-
-cbox_install_dir="${install_dir}/${module_name}/bin"
-ar18.script.execute_with_sudo mkdir -p "${cbox_install_dir}"
-
-ar18.script.install "${install_dir}" "${module_name}" "${script_dir}"
-
-# Get latest version
-cd "${temp_dir}"
-wget https://www.ortussolutions.com/parent/download/commandbox/type/linux-jre64
-ar18.script.execute_with_sudo unzip "${temp_dir}/linux-jre64" -d "${cbox_install_dir}"
-cd "${script_dir}"
-
-set +e
-pkill -u "${cfbox_user}"
-set -e
-
-# Install user
-set +e
-ar18.script.execute_with_sudo userdel "${cfbox_user}"
-ar18.script.execute_with_sudo groupdel "${cfbox_user}"
-set -e
-ar18.script.execute_with_sudo useradd -r -m -U -d "${cbox_install_dir}" -s "/bin/false" "${cfbox_user}"
-ar18.script.execute_with_sudo usermod -u "9999" "${cfbox_user}"
-ar18.script.execute_with_sudo groupmod -g "9999" "${cfbox_user}"
-
-ar18.script.execute_with_sudo chown "${cfbox_user}":"${cfbox_user}" "${cbox_install_dir}" -R
-ar18.script.execute_with_sudo chmod 0770 "${cbox_install_dir}" -R
-
-ar18.script.execute_with_sudo usermod -aG "${cfbox_user}" "$(whoami)"
-
-# Dependencies
-ar18.pacman.install libappindicator-gtk3
-
-ar18.script.execute_with_sudo mkdir -p "${www_root}"
-
-ar18.script.execute_with_sudo rm -rf "${www_root}/test_server"
-ar18.script.execute_with_sudo cp -rf "${script_dir}/${module_name}/test_server" "${www_root}/test_server"
-ar18.script.execute_with_sudo ln "/home/$(whoami)/.config/ar18/commandbox/test_server.json" "${www_root}/test_server/test_server.json"
-
-echo "${www_root}" > "/home/$(whoami)/.config/ar18/commandbox/www_root"
-echo "${cfbox_user}" > "/home/$(whoami)/.config/ar18/commandbox/cfbox_user"
-
-ar18.script.execute_with_sudo chown "${cfbox_user}":"${cfbox_user}" "/home/$(whoami)/.config/ar18/commandbox/"*.json
-ar18.script.execute_with_sudo chmod 0660 "/home/$(whoami)/.config/ar18/commandbox/"*.json
-
-ar18.script.execute_with_sudo sed -i "s~@@USER_NAME@@~${user_name}~g" "${install_dir}/${module_name}/start.sh"
-ar18.script.execute_with_sudo sed -i "s~@@USER_NAME@@~${user_name}~g" "${install_dir}/${module_name}/stop.sh"
-
-ar18.script.execute_with_sudo "${install_dir}/${module_name}/start.sh" "test_server"
+sudo -H -u "${cfuser}" "${install_dir}/commandbox/bin/box" server status "${www_root}/${server_name}/${server_name}.json" --console &
 
 ##################################SCRIPT_END###################################
 set +x
