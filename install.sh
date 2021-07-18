@@ -206,7 +206,7 @@ cd "${temp_dir}"
 wget https://www.ortussolutions.com/parent/download/commandbox/type/linux-jre64
 ar18.script.execute_with_sudo unzip "${temp_dir}/linux-jre64" -d "${cbox_install_dir}"
 
-ar18.script.execute_with_sudo pkill -f commandbox
+#ar18.script.execute_with_sudo pkill -f commandbox
 
 # Install user
 set +e
