@@ -1,3 +1,4 @@
+// This file is JSON5 in order to use comments. The actual files should be in JSON
 {
   "name": "",
   "openBrowser": true,
