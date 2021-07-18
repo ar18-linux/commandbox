@@ -241,10 +241,10 @@ ar18.script.execute_with_sudo chmod 0660 "/home/$(whoami)/.config/ar18/commandbo
 
 content="$(cat "${install_dir}/${module_name}/start.sh")"
 #content="${content//@@USER_NAME@@/${user_name}}"
-ar18.script.execute_with_sudo bash -c 'echo "${content}" > "${install_dir}/${module_name}/start.sh"'
+#ar18.script.execute_with_sudo bash -c 'echo "${content}" > "${install_dir}/${module_name}/start.sh"'
 content="$(cat "${install_dir}/${module_name}/stop.sh")"
 #content="${content//@@USER_NAME@@/${user_name}}"
-ar18.script.execute_with_sudo bash -c 'echo "${content}" > "${install_dir}/${module_name}/stop.sh"'
+#ar18.script.execute_with_sudo bash -c 'echo "${content}" > "${install_dir}/${module_name}/stop.sh"'
 
 ar18.script.execute_with_sudo "${install_dir}/${module_name}/start.sh" "test_server" &
 
