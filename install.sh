@@ -208,7 +208,7 @@ ar18.script.execute_with_sudo unzip "${temp_dir}/linux-jre64" -d "${cbox_install
 cd "${script_dir}"
 
 set +e
-pkill -u "${cfbox_user}"
+ar18.script.execute_with_sudo pkill -u "${cfbox_user}"
 set -e
 
 # Install user
