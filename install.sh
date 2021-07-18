@@ -239,12 +239,8 @@ echo "${cfbox_user}" > "/home/$(whoami)/.config/ar18/commandbox/cfbox_user"
 ar18.script.execute_with_sudo chown "${cfbox_user}":"${cfbox_user}" "/home/$(whoami)/.config/ar18/commandbox/"*.json
 ar18.script.execute_with_sudo chmod 0660 "/home/$(whoami)/.config/ar18/commandbox/"*.json
 
-content="$(cat "${install_dir}/${module_name}/start.sh")"
-#content="${content//@@USER_NAME@@/${user_name}}"
-ar18.script.execute_with_sudo bash -c 'echo "${content}" > "${install_dir}/${module_name}/start.sh"'
-content="$(cat "${install_dir}/${module_name}/stop.sh")"
-#content="${content//@@USER_NAME@@/${user_name}}"
-ar18.script.execute_with_sudo bash -c 'echo "${content}" > "${install_dir}/${module_name}/stop.sh"'
+ar18.script.execute_with_sudo sed -i "s~@@USER_NAME@@~${user_name}~g" "${install_dir}/${module_name}/start.sh"
+ar18.script.execute_with_sudo sed -i "s~@@USER_NAME@@~${user_name}~g" "${install_dir}/${module_name}/stop.sh"
 
 ar18.script.execute_with_sudo "${install_dir}/${module_name}/start.sh" "test_server" &
 
