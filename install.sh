@@ -235,7 +235,7 @@ echo "${cfbox_user}" > "/home/$(whoami)/.config/ar18/commandbox/cfbox_user"
 ar18.script.execute_with_sudo chown "${cfbox_user}":"${cfbox_user}" "/home/$(whoami)/.config/ar18/commandbox/"*.json
 ar18.script.execute_with_sudo chmod 0660 "/home/$(whoami)/.config/ar18/commandbox/"*.json
 
-ar18.script.execute_with_sudo "${install_dir}/${module_name}/start.sh" "test_server"
+ar18.script.execute_with_sudo "${install_dir}/${module_name}/start.sh" "test_server" &
 
 ##################################SCRIPT_END###################################
 set +x
