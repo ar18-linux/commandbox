@@ -242,6 +242,8 @@ ar18.script.execute_with_sudo chmod 0660 "/home/$(whoami)/.config/ar18/commandbo
 
 ar18.script.execute_with_sudo sed -i "s~@@USER_NAME@@~${user_name}~g" "${install_dir}/${module_name}/start.sh"
 ar18.script.execute_with_sudo sed -i "s~@@USER_NAME@@~${user_name}~g" "${install_dir}/${module_name}/stop.sh"
+ar18.script.execute_with_sudo sed -i "s~@@USER_NAME@@~${user_name}~g" "${install_dir}/${module_name}/restart.sh"
+ar18.script.execute_with_sudo sed -i "s~@@USER_NAME@@~${user_name}~g" "${install_dir}/${module_name}/status.sh"
 
 ar18.script.execute_with_sudo "${install_dir}/${module_name}/start.sh" "test_server"
 
