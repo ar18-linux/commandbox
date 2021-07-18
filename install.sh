@@ -213,7 +213,7 @@ ar18.script.kill_processes_by_user "${cfbox_user}"
 # Install user
 set +e
 ar18.script.execute_with_sudo userdel "${cfbox_user}"
-ar18.script.execute_with_sudo groupdel "${cfbox_user}"
+ar18.script.execute_with_sudo delgroup "${cfbox_user}"
 set -e
 ar18.script.execute_with_sudo useradd -r -m -U -d "${cbox_install_dir}" -s "/bin/false" "${cfbox_user}"
 ar18.script.execute_with_sudo usermod -u "9999" "${cfbox_user}"
