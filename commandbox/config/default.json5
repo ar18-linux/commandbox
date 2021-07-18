@@ -30,6 +30,8 @@
   },
   "web": {
     "host": "127.0.0.1",
+    // If the server should be reachable from the outside use 0.0.0.0
+    "host": "127.0.0.1",
     "webroot": "src/cfml",
     "directoryBrowsing": true,
     "accessLogEnable": true,

@@ -184,6 +184,7 @@ ar18.script.import ar18.script.obtain_sudo_password
 ar18.script.import ar18.script.install
 ar18.script.import ar18.script.execute_with_sudo
 ar18.script.import ar18.pacman.install
+ar18.script.import ar18.script.kill_process_by_user
 
 . "${script_dir}/vars"
 
@@ -207,9 +208,7 @@ wget https://www.ortussolutions.com/parent/download/commandbox/type/linux-jre64
 ar18.script.execute_with_sudo unzip "${temp_dir}/linux-jre64" -d "${cbox_install_dir}"
 cd "${script_dir}"
 
-set +e
-ar18.script.execute_with_sudo pkill -u "${cfbox_user}"
-set -e
+ar18.script.kill_process_by_user "${cfbox_user}"
 
 # Install user
 set +e
