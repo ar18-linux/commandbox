@@ -192,7 +192,7 @@ if [ "${server_dir}" != "" ]; then
   eval "${server_dir}"
 fi
 
-sudo -H -u "${cfuser}" "${install_dir}/commandbox/bin/box" server start "${www_root}/${server_name}/${server_name}.json" --console
+sudo -H -u "${cfuser}" "${install_dir}/commandbox/bin/box" server start "${www_root}/${server_name}/${server_name}.json" --console &
 
 ##################################SCRIPT_END###################################
 set +x
