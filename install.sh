@@ -207,8 +207,7 @@ wget https://www.ortussolutions.com/parent/download/commandbox/type/linux-jre64
 ar18.script.execute_with_sudo unzip "${temp_dir}/linux-jre64" -d "${cbox_install_dir}"
 cd "${script_dir}"
 
-# Kills install script as well!
-#ar18.script.execute_with_sudo pkill -f commandbox
+pkill -u "${cfbox_user}"
 
 # Install user
 set +e
