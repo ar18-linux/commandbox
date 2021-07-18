@@ -181,9 +181,9 @@ trap 'err_report "${BASH_SOURCE[0]}" ${LINENO} "${BASH_COMMAND}"' ERR
 #################################SCRIPT_START##################################
 
 server_name="${1}"
-cfuser="$(cat "/home/$(logname)/.config/ar18/commandbox/cfbox_user")"
-install_dir="$(cat "/home/$(logname)/.config/ar18/commandbox/INSTALL_DIR")"
-www_root="$(cat "/home/$(logname)/.config/ar18/commandbox/www_root")"
+cfuser="$(cat "/home/@@USER_NAME@@/.config/ar18/commandbox/cfbox_user")"
+install_dir="$(cat "/home/@@USER_NAME@@/.config/ar18/commandbox/INSTALL_DIR")"
+www_root="$(cat "/home/@@USER_NAME@@/.config/ar18/commandbox/www_root")"
 
 server_dir="$(cat "${www_root}/${server_name}/${server_name}.json" | grep "serverHomeDirectory")"
 server_dir="$(echo "${server_dir}" | xargs | sed -e "s/:/=/g")"
