@@ -244,7 +244,7 @@ ar18.script.execute_with_sudo sed -i "s~@@USER_NAME@@~${user_name}~g" "${install
 ar18.script.execute_with_sudo sed -i "s~@@USER_NAME@@~${user_name}~g" "${install_dir}/${module_name}/restart.sh"
 ar18.script.execute_with_sudo sed -i "s~@@USER_NAME@@~${user_name}~g" "${install_dir}/${module_name}/status.sh"
 
-ar18.script.execute_with_sudo "${install_dir}/${module_name}/start.sh" "test_server"
+#ar18.script.execute_with_sudo "${install_dir}/${module_name}/start.sh" "test_server"
 
 ##################################SCRIPT_END###################################
 set +x
